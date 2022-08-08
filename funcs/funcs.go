@@ -17,9 +17,12 @@ func Take[T any](slice []T, index int) []T {
 	return append(slice[:index], slice[index+1:]...)
 }
 
-//func Reverse[T any](slice []T,slice2 []T) []T {
-//	return Reverse()
-//}
+func Reverse[T any](xs []T) []T {
+	if len(xs) == 0 {
+		return xs
+	}
+	return append(Reverse(Tail(xs)), Head(xs))
+}
 
 //Returns the Factorial of any number
 func Factorial(x int) int {
@@ -47,7 +50,7 @@ func Max[T any](xs []T) {
 }
 
 func main() {
-	arr := []float64{1, 2}
-	ar2 := Sum(arr)
+	arr := []float64{1, 2, 1, 2, 3, 4, 4, 5, 5, 5, 6, 4, 3, 432, 2}
+	ar2 := Reverse(arr)
 	fmt.Println(ar2)
 }
