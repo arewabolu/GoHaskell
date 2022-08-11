@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 //Returns the first item in a  slice
 func Head[T any](slice []T) T {
 	return slice[0]
@@ -47,10 +45,4 @@ func Sum(xs []float64) float64 {
 
 func Max[T any](xs []T) {
 	return
-}
-
-func main() {
-	arr := []float64{1, 2, 1, 2, 3, 4, 4, 5, 5, 5, 6, 4, 3, 432, 2}
-	ar2 := Reverse(arr)
-	fmt.Println(ar2)
 }
