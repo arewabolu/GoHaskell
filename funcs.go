@@ -1,4 +1,4 @@
-package basic
+package gohaskell
 
 // Returns the first item in a  slice
 func Head[T any](slice []T) T {
