@@ -44,11 +44,13 @@ func Drop[T any](xs []T, x int) []T {
 }
 
 // Sums up elements of an array
-func Sum(xs []float64) float64 {
+func Sum(xs []any) any {
 	if len(xs) == 0 {
-		return 0
+		var x any
+		return x
 	}
-	return Head(xs) + Sum(Tail(xs)) //no new head
+	//a := T + T
+	return Head(xs).(int) + Sum(Tail(xs)).(int) //no new head
 }
 
 func contains[T comparable](xs []T, elem T) bool {
