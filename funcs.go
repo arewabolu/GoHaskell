@@ -19,7 +19,7 @@ func Tail[T any](slice []T) []T {
 }
 
 // Removes an item from a slice
-func Take[T any](slice []T, index int) []T {
+func Pop[T any](slice []T, index int) []T {
 	return append(slice[:index], slice[index+1:]...)
 }
 
@@ -64,4 +64,16 @@ func contains[T comparable](xs []T, elem T) bool {
 
 	return false
 
+}
+
+func Put[T any](xs []T, x T, pos int) []T {
+	if len(xs) == 0 {
+		return xs
+	}
+	newT := make([]T, 0, len(xs)+1)
+	mid := xs[:pos]
+	newT = append(newT, mid...)
+	newT = append(newT, x)
+	newT = append(newT, xs[pos:]...)
+	return newT
 }
