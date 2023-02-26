@@ -1,5 +1,9 @@
 package gohaskell
 
+type arithmetic interface {
+	int | int8 | int16 | int32 | int64 | float32 | float64
+}
+
 // Returns the first item in a  slice
 func Head[T any](slice []T) T {
 	return slice[0]
@@ -43,15 +47,15 @@ func Drop[T any](xs []T, x int) []T {
 	return xs[x:]
 }
 
-// Sums up elements of an array
-func Sum(xs []any) any {
+/*// Sums up elements of an array
+func Sum[T arithmetic](xs []T) any {
 	if len(xs) == 0 {
 		var x any
 		return x
 	}
-	//a := T + T
-	return Head(xs).(int) + Sum(Tail(xs)).(int) //no new head
-}
+	return Head(xs)+ Sum(Tail(xs))
+
+}*/
 
 func contains[T comparable](xs []T, elem T) bool {
 	if elem == Head(xs) {
