@@ -24,6 +24,9 @@ func Tail[T any](slice []T) []T {
 
 // Removes an item from a slice
 func Pop[T any](slice []T, index int) []T {
+	if len(slice) == 0 {
+		return slice
+	}
 	return append(slice[:index], slice[index+1:]...)
 }
 
