@@ -1,7 +1,7 @@
 package gohaskell
 
 type arithmetic interface {
-	int | int8 | int16 | int32 | int64 | float32 | float64
+	int | int8 | int16 | int32 | int64 | uint | uint8 | uint16 | uint32 | uint64 | float32 | float64
 }
 
 // Returns the first item in a  slice
@@ -30,6 +30,7 @@ func Pop[T any](slice []T, index int) []T {
 	return append(slice[:index], slice[index+1:]...)
 }
 
+// flips the indexes of slice xs
 func Reverse[T any](xs []T) []T {
 	if len(xs) == 0 {
 		return xs
@@ -47,32 +48,39 @@ func Factorial(x int) int {
 
 // Removes any item after x
 func Drop[T any](xs []T, x int) []T {
+	if len(xs) == 0 {
+		return xs
+	}
+	if len(xs) < x {
+		return []T{}
+	}
 	return xs[x:]
 }
 
-/*// Sums up elements of an array
-func Sum[T arithmetic](xs []T) any {
+// Sums up elements of an array
+func Sum[T arithmetic](xs []T) T {
 	if len(xs) == 0 {
-		var x any
+		var x T
 		return x
 	}
-	return Head(xs)+ Sum(Tail(xs))
-
-}*/
-
-func contains[T comparable](xs []T, elem T) bool {
-	if elem == Head(xs) {
-		return true
-	} else {
-		if elem != Head(xs) {
-			return contains(Tail(xs), elem)
-		}
-	}
-
-	return false
-
+	return Head(xs) + Sum(Tail(xs))
 }
 
+// Checks if xs contains the given element elem and returns a boolean value
+func Contains[T comparable](xs []T, elem T) bool {
+	if len(xs) == 0 {
+		return false
+	}
+	if elem == Head(xs) {
+		return true
+	}
+	if elem != Head(xs) {
+		return Contains(Tail(xs), elem)
+	}
+	return false
+}
+
+// Places item 'x' into the slice xs at position 'pos' and returns a new array containing x
 func Put[T any](xs []T, x T, pos int) []T {
 	if len(xs) == 0 {
 		return xs
@@ -83,4 +91,17 @@ func Put[T any](xs []T, x T, pos int) []T {
 	newT = append(newT, x)
 	newT = append(newT, xs[pos:]...)
 	return newT
+}
+
+// Returns all items up to 'max' in given slice.
+//
+// Edge case: If 'max' is greater than the slice length it returns all items in the slice
+func Take[T any](xs []T, max int) []T {
+	if len(xs) == 0 {
+		return xs
+	}
+	if len(xs) < max {
+		return xs
+	}
+	return xs[0:max]
 }
