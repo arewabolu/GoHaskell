@@ -19,6 +19,12 @@ func Last[T any](xs []T) T {
 
 // Returns the items after the first item in a slice
 func Tail[T any](slice []T) []T {
+	if len(slice) == 0 {
+		return []T{}
+	}
+	if len(slice) == 1 {
+		return slice
+	}
 	return slice[1:]
 }
 
@@ -30,7 +36,7 @@ func Pop[T any](slice []T, index int) []T {
 	return append(slice[:index], slice[index+1:]...)
 }
 
-// flips the indexes of slice xs
+// flips the items of slice xs
 func Reverse[T any](xs []T) []T {
 	if len(xs) == 0 {
 		return xs
@@ -46,7 +52,7 @@ func Factorial(x int) int {
 	return x * Factorial(x-1)
 }
 
-// Removes any item after x
+// Removes any item before x
 func Drop[T any](xs []T, x int) []T {
 	if len(xs) == 0 {
 		return xs
@@ -104,4 +110,12 @@ func Take[T any](xs []T, max int) []T {
 		return xs
 	}
 	return xs[0:max]
+}
+
+// returns all items except the last items in the slice
+func ExlcudeLast[T any](slice []T) []T {
+	if len(slice) == 0 {
+		return slice
+	}
+	return slice[:len(slice)-1]
 }

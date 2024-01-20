@@ -1,6 +1,7 @@
 package gohaskell
 
 import (
+	"strings"
 	"testing"
 )
 
@@ -26,10 +27,12 @@ func TestContains(t *testing.T) {
 
 func TestTake(t *testing.T) {
 	name := []string{"a", "b", "d", "e", "f", "g", "h", "i"}
-	nwName := Take(name, 26)
+	nwName := Take(name, 4)
 	t.Error(nwName)
 	emptySlices := Take(name, 0)
 	t.Error(emptySlices)
+	nwslice := Take(name, 1)
+	t.Error(nwslice)
 }
 
 func TestDrop(t *testing.T) {
@@ -40,4 +43,16 @@ func TestDrop(t *testing.T) {
 	t.Error(trial2)
 	trial3 := Drop(name, 100)
 	t.Error(trial3)
+}
+
+func TestExclude(t *testing.T) {
+	name := []string{"a", "b", "d", "e", "f", "g", "h", "i"}
+	nwName := ExlcudeLast(name)
+	t.Error(name, nwName)
+}
+
+func TestSpliter(t *testing.T) {
+	word := "nine65fiveeightjmeight"
+	texts := strings.ReplaceAll(word, "eight", "8")
+	t.Error(texts)
 }
