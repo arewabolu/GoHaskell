@@ -55,4 +55,21 @@ func TestSpliter(t *testing.T) {
 	word := "nine65fiveeightjmeight"
 	texts := strings.ReplaceAll(word, "eight", "8")
 	t.Error(texts)
+
+	t.Run("slices", func(t *testing.T) {
+		sep := strings.Split("De Minaur A.", " ")
+		t.Error(sep, len(sep))
+	})
+}
+
+func TestReverseTake(t *testing.T) {
+	name := []string{"a", "b", "d", "e", "f", "g", "h", "i"}
+	t.Run("testLargeLength", func(t *testing.T) {
+		nwName := ReverseTake(name, 10)
+		t.Error(nwName)
+	})
+	t.Run("TestOkLength", func(t *testing.T) {
+		nwName := ReverseTake(name, 2)
+		t.Error(nwName)
+	})
 }

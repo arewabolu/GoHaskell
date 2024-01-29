@@ -44,14 +44,6 @@ func Reverse[T any](xs []T) []T {
 	return append(Reverse(Tail(xs)), Head(xs))
 }
 
-// Returns the Factorial of any number
-func Factorial(x int) int {
-	if x == 0 {
-		return 1
-	}
-	return x * Factorial(x-1)
-}
-
 // Removes any item before x
 func Drop[T any](xs []T, x int) []T {
 	if len(xs) == 0 {
@@ -118,4 +110,17 @@ func ExlcudeLast[T any](slice []T) []T {
 		return slice
 	}
 	return slice[:len(slice)-1]
+}
+
+// Resturns length of slice - given length
+//
+// has same edge case as Take
+func ReverseTake[T any](xs []T, length int) []T {
+	if len(xs) == 0 {
+		return xs
+	}
+	if len(xs) < length {
+		return xs
+	}
+	return xs[len(xs)-length:]
 }
